@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ring in a Box — NSP Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #163828;
+    --panel: #1E4531;
+    --accent: #5CB85C;
+    --accent-light: #B7E4B0;
+    --ivory: #EAF5E6;
+    --muted: #7FA98C;
+    --line: #2A4F3A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .art-panel {
+    flex: 0 0 42%;
+    background: var(--panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-right: 1px solid var(--line);
+    padding: 40px;
+  }
+
+  .ring-svg {
+    width: 100%;
+    max-width: 340px;
+    animation: settle 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes settle {
+    from { opacity: 0; transform: scale(0.85) rotate(-8deg); }
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring-svg { animation: none; }
+  }
+
+  .content-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 72px;
+    max-width: 640px;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .wordmark svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  .wordmark span {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    color: var(--accent-light);
+    margin-bottom: 20px;
+  }
+
+  .subhead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--accent-light);
+    margin-bottom: 24px;
+    max-width: 480px;
+    font-weight: 500;
+  }
+
+  .body-copy {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 460px;
+  }
+
+  .body-copy strong {
+    color: var(--ivory);
+    font-weight: 600;
+  }
+
+  form {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin-bottom: 12px;
+  }
+
+  input[type="email"] {
+    flex: 1;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--ivory);
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: 'Space Grotesk', sans-serif;
+    border-radius: 2px;
+  }
+
+  input[type="email"]::placeholder { color: var(--muted); }
+
+  input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  button {
+    background: var(--accent);
+    color: #0F2A1D;
+    border: none;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  button:hover { background: var(--accent-light); }
+
+  button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent-light);
+    outline-offset: 2px;
+  }
+
+  .confirm {
+    font-size: 14px;
+    color: var(--accent-light);
+    min-height: 20px;
+  }
+
+  .footer {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer a:hover {
+    color: var(--ivory);
+    border-bottom-color: var(--ivory);
+  }
+
+  .footer .sep {
+    width: 1px;
+    height: 12px;
+    background: var(--line);
+  }
+
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    .art-panel {
+      flex: 0 0 auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 32px;
+    }
+    .ring-svg { max-width: 200px; }
+    .content-panel {
+      padding: 40px 28px 56px;
+      max-width: none;
+    }
+    form { flex-direction: column; }
+    button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <div class="art-panel">
+      <svg class="ring-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- ring band -->
+        <circle cx="150" cy="165" r="80" fill="none" stroke="#B7E4B0" stroke-width="11"/>
+        <circle cx="150" cy="165" r="80" fill="none" stroke="#5CB85C" stroke-width="1.5" opacity="0.6"/>
+        <!-- NFC wave arcs, echoing the logo mark, sitting inside the band -->
+        <g stroke="#5CB85C" stroke-width="6" fill="none" stroke-linecap="round">
+          <path d="M 135 169 A 16 16 0 0 1 151 185" opacity="0.95"/>
+          <path d="M 135 158 A 27 27 0 0 1 162 185" opacity="0.65"/>
+          <path d="M 135 147 A 38 38 0 0 1 173 185" opacity="0.35"/>
+        </g>
+        <circle cx="135" cy="185" r="6" fill="#5CB85C"/>
+      </svg>
+    </div>
+    <div class="content-panel">
+      <div class="wordmark">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#5CB85C" stroke-width="7" fill="none" stroke-linecap="round">
+            <path d="M 30 56 A 14 14 0 0 1 44 70"/>
+            <path d="M 30 44 A 26 26 0 0 1 56 70"/>
+            <path d="M 30 32 A 38 38 0 0 1 68 70"/>
+          </g>
+          <circle cx="30" cy="70" r="7" fill="#5CB85C"/>
+        </svg>
+        <span>NSP TECHNOLOGIES LTD</span>
+      </div>
+      <h1>Ring in a Box</h1>
+      <p class="subhead">Tell us your size and a base colour. We'll match you with one of 60+ designs.</p>
+      <p class="body-copy">
+        No app to fight, no learning curve — <strong>tap, pay, done</strong>. If the ring we send isn't right, send it back once and we'll try again. Price and exact launch date landing here very soon.
+      </p>
+      <form id="notify-form">
+        <input type="email" id="email-input" placeholder="you@email.com" required aria-label="Email address">
+        <button type="submit">Notify me first</button>
+      </form>
+      <p class="confirm" id="confirm-msg"></p>
+      <div class="footer">
+        <a href="https://www.instagram.com/nsptechnologies_ltd/" target="_blank" rel="noopener">Instagram</a>
+        <span class="sep"></span>
+        <a href="https://www.linkedin.com/in/nigel-palmer/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('notify-form');
+    const confirmMsg = document.getElementById('confirm-msg');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      if (email) {
+        confirmMsg.textContent = "You're on the list — we'll email you the moment it's live.";
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
